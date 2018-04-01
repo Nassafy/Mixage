@@ -13,6 +13,7 @@
 #include "multiplicateur.h"
 #include "operationbinaire.h"
 #include "volume.h"
+#include "volumecompose.h"
 #include <iostream>
 
 void
@@ -59,7 +60,6 @@ multiplicateur_la440_la880()
 	}
 	while(mult.yaDesEchantillons())
 	{
-
 		mult.calculer();
 		enregistreur.calculer();
 	}
@@ -69,9 +69,28 @@ multiplicateur_la440_la880()
 void volum()
 {
 	harmonique la440(440); // la 440Hz (voir fr.wikipedia.org/wiki/Note_de_musique)
-	volume vol(2);
+	volume vol(10);
 	vol.connecterEntree(la440.getSortie(0), 0);
 	enregistreur_fichier enregistreur("06_volume.raw", 1);	// fichier mono
+	enregistreur.connecterEntree(vol.getSortie(0), 0);
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	{
+	la440.calculer();
+	}
+	while(vol.yaDesEchantillons())
+	{
+		vol.calculer();
+		enregistreur.calculer();
+	}
+}
+
+
+void volum_compose()
+{
+	harmonique la440(440); // la 440Hz (voir fr.wikipedia.org/wiki/Note_de_musique)
+	volume vol(0.5);
+	vol.connecterEntree(la440.getSortie(0), 0);
+	enregistreur_fichier_texte enregistreur("07_volume.txt", 1);	// fichier mono
 	enregistreur.connecterEntree(vol.getSortie(0), 0);
 	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
 	{
@@ -87,6 +106,6 @@ int
 main()
 {
   //q2_signal_constant();
-  volum();
+  volum_compose();
   return 0;
 }

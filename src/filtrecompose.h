@@ -15,6 +15,7 @@ class filtre_compose : public filtre_base {
 
 private:
 	std::vector<std::pair<std::shared_ptr<consommateur>, int>> m_vassociation;
+	std::vector<std::shared_ptr<composant>> m_vcomposant;
 protected:
 	void addAssociation(std::shared_ptr<consommateur> comp, int n);
 public:
@@ -24,6 +25,9 @@ public:
 
 	void connecterEntree(const std::shared_ptr<flot> pflot, unsigned int n);
 
+	void calculer();
+
+	void addComposant(std::shared_ptr<composant>);
 };
 
 #endif /* SRC_FILTRECOMPOSE_H_ */
