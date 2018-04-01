@@ -44,3 +44,7 @@ void filtre_compose::addComposant(std::shared_ptr<composant> comp)
 { 
 	m_vcomposant.push_back(comp);
 }
+std::shared_ptr<composant> filtre_compose::getComposant(int nb)
+{
+	return m_vcomposant[nb];
+}

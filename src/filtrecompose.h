@@ -28,6 +28,8 @@ public:
 	void calculer();
 
 	void addComposant(std::shared_ptr<composant>);
+
+	std::shared_ptr<composant> getComposant(int nb);
 };
 
 #endif /* SRC_FILTRECOMPOSE_H_ */
