@@ -7,7 +7,7 @@
 
 #ifndef SRC_CONSOMMATEURBASE_H_
 #define SRC_CONSOMMATEURBASE_H_
-#include "consommateur.h"
+#include <consommateur.h>
 #include <vector>
 
 class consommateur_base : public virtual consommateur{

@@ -88,18 +88,22 @@ void volum()
 void volum_compose()
 {
 	harmonique la440(440); // la 440Hz (voir fr.wikipedia.org/wiki/Note_de_musique)
-	volume vol(0.5);
+	volume_compose vol(0.5);
 	vol.connecterEntree(la440.getSortie(0), 0);
-	enregistreur_fichier_texte enregistreur("07_volume.txt", 1);	// fichier mono
+	enregistreur_fichier enregistreur("07_volume.raw", 1);	// fichier mono
 	enregistreur.connecterEntree(vol.getSortie(0), 0);
+	std::cout << "Avant calculer" << std::endl;
 	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
 	{
 	la440.calculer();
 	}
+	std::cout << "La 440 calculer" << std::endl;
 	while(vol.yaDesEchantillons())
 	{
+		std::cout << "Debut calc" << std::endl;
 		vol.calculer();
 		enregistreur.calculer();
+		std::cout << "fin calc" << std::endl;
 	}
 }
 int

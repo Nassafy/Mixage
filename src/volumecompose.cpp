@@ -3,7 +3,7 @@
 #include <multiplicateur.h>
 
 volume_compose::volume_compose(double val)
-:filtre_compose(2,1)
+:filtre_compose(1,1)
 {
     // 0 -> Signal constant
     // 1 -> multiplicateur
